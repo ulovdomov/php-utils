@@ -36,7 +36,7 @@ Add following to your `composer.json`:
 And run:
 
 ```shell
-composer require ulovdomov/php-utils
+composer require ulovdomov/utils
 ```
 
 ## Usage

@@ -1,5 +1,5 @@
 {
-  "name": "ulovdomov/php-utils",
+  "name": "ulovdomov/utils",
   "description": "Php Utils Package",
   "license": "MIT",
   "require": {
