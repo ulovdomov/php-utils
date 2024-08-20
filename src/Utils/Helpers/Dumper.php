@@ -118,7 +118,9 @@ final class Dumper
 
             return "/* Closure defined in file {$rc->getFileName()} on line {$rc->getStartLine()} */";
         } elseif (\is_object($var)) {
-            if (($rc = new \ReflectionObject($var))->isAnonymous()) {
+            $rc = new \ReflectionObject($var);
+
+            if ($rc->isAnonymous()) {
                 return "/* Anonymous class defined in file {$rc->getFileName()} on line {$rc->getStartLine()} */";
             }
 
