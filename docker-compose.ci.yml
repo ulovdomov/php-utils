@@ -1,0 +1,9 @@
+services:
+  php:
+    build:
+      dockerfile: ./.infrastructure/docker/php/Dockerfile
+      target: build-dev
+      context: .
+      args:
+        - COMPOSER_TOKEN=${COMPOSER_TOKEN}
+    env_file: .env

@@ -1,0 +1,9 @@
+.idea
+.env
+http-client
+composer.lock
+vendor
+log/*
+!log/.gitkeep
+temp/*
+!temp/.gitkeep

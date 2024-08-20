@@ -1,0 +1,10 @@
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - COMPOSER_TOKEN=${COMPOSER_TOKEN}
+    env_file: .env
+    volumes:
+      - ./:/var/www/html
