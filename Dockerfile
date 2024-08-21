@@ -20,6 +20,8 @@ ADD . /var/www/html
 
 RUN mkdir -p .composer
 
+RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > .composer/auth.json
+
 USER www-data
 
 CMD ["php-fpm"]

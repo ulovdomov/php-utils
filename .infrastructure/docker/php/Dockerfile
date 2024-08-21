@@ -38,6 +38,8 @@ USER www-data
 
 RUN mkdir -p .composer
 
+RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > .composer/auth.json
+
 RUN mkdir -p src temp log
 
 RUN chmod -R 0777 log temp
