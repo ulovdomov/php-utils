@@ -35,6 +35,13 @@ jobs:
           composer-token: ${{ secrets.UD_COMPOSER_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: "PHP_Composer"
+        uses: "ulovdomov/github-actions/.github/actions/php-composer@v1"
+#        uses: "./.github/actions/php-composer"
+        with:
+          command: 'docker compose -f "docker-compose.ci.yml" exec -it php composer run install'
+          cache-path: ".composer/cache/files"
+
       - name: "PHP_CodeSniffer"
         uses: "ulovdomov/github-actions/.github/actions/php-codesniffer@v1"
         with:
@@ -43,7 +50,6 @@ jobs:
 
       - name: "PHPStan"
         uses: "ulovdomov/github-actions/.github/actions/php-stan@v1"
-#        uses: "./.github/actions/php-stan"
         with:
           command: 'docker compose -f "docker-compose.ci.yml" exec -it php composer run phpstan'
           cache-path: "temp/.php-stan-cache"
