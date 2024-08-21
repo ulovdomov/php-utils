@@ -11,23 +11,19 @@ RUN apt-get upgrade -y
 
 RUN mkdir -p src temp log
 
+RUN chown -R www-data:www-data /var/www
+RUN chmod -R 0777 .
+
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-
-RUN mkdir -p /var/www/.composer
-
-RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > /var/www/.composer/auth.json
 
 WORKDIR /var/www/html
 
 ADD . /var/www/html
 
-USER root
+RUN mkdir -p .composer
 
-RUN chown -R www-data:www-data /var/www
-RUN chmod -R 0777 .
+RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > .composer/auth.json
 
 USER www-data
-
-#RUN composer install --no-dev --no-interaction --optimize-autoloader
 
 CMD ["php-fpm"]

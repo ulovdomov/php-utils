@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine3.19 as base
+FROM php:8.3-fpm-alpine3.19 AS base
 
 ARG COMPOSER_TOKEN
 
@@ -28,35 +28,22 @@ COPY .infrastructure/docker/php/php.ini /usr/local/etc/php/conf.d/custom_php.ini
 
 WORKDIR /var/www/html
 
-RUN mkdir -p /home/www-data/.composer
-
-RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > /home/www-data/.composer/auth.json
-
 COPY . .
 
 USER root
 
 RUN chown -R www-data:www-data .
 
+FROM base as build-dev
+
 USER www-data
+
+RUN mkdir -p .composer
+
+RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > .composer/auth.json
 
 RUN mkdir -p src temp log
 
 RUN chmod -R 0777 log temp
 
-FROM base as build-dev
-
-USER www-data
-
-RUN composer install --no-interaction
-
 ENTRYPOINT ["/bin/sh", "/var/www/html/.infrastructure/docker/php/entrypoint-staging.sh"]
-
-
-FROM base as build-prod
-
-RUN composer install --no-dev --no-interaction --optimize-autoloader
-
-RUN rm -f /home/www-data/.composer/auth.json
-
-# todo: optionaly can remove openssh-client and git

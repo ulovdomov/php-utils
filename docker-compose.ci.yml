@@ -6,4 +6,7 @@ services:
       context: .
       args:
         - COMPOSER_TOKEN=${COMPOSER_TOKEN}
+        - COMPOSER_HOME=/var/www/html/.composer
     env_file: .env
+    environment:
+      COMPOSER_HOME: /var/www/html/.composer
