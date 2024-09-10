@@ -5,6 +5,7 @@ namespace UlovDomov\Http;
 enum StatusCode: int
 {
     case Success = 200;
+    case Created = 201;
     case NoContent = 204;
     case BadRequest = 400;
     case Unauthorized = 401;
