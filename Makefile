@@ -1,8 +1,4 @@
 init:
-	@if [ ! -f .env ]; then \
-		echo "The .env file does not exist. Create it as a copy of .env.template and fill in your information if necessary."; \
-		exit 1; \
-	fi
 	mkdir -p src temp log
 	docker-compose up -d
 

@@ -1,7 +1,5 @@
 FROM php:8.1-fpm
 
-ARG COMPOSER_TOKEN
-
 RUN apt-get update -y
 RUN apt-get install nano vim git zip libicu-dev -y
 RUN apt-get upgrade -y
@@ -21,8 +19,6 @@ WORKDIR /var/www/html
 ADD . /var/www/html
 
 RUN mkdir -p .composer
-
-RUN echo "{\"github-oauth\": {\"github.com\": \"${COMPOSER_TOKEN}\"}}" > .composer/auth.json
 
 USER www-data
 
