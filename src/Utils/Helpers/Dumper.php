@@ -159,9 +159,7 @@ final class Dumper
 
             $hash = self::hash($var);
 
-            return $class === 'stdClass'
-                ? "(object) /* $hash */ [$out]"
-                : "$class::__set_state(/* $hash */ [$out])";
+            return $class === 'stdClass' ? "(object) /* $hash */ [$out]" : "$class::__set_state(/* $hash */ [$out])";
         } elseif (\is_resource($var)) {
             return '/* resource ' . \get_resource_type($var) . ' */';
         } else {

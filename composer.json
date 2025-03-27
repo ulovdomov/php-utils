@@ -13,9 +13,9 @@
   },
   "scripts": {
     "install": "composer install --no-interaction --no-progress --prefer-dist",
-    "cs": "mkdir -p temp/.php-codesniffer-cache && phpcs --standard=phpcs.xml src tests",
-    "cs-fix": "mkdir -p temp/.php-codesniffer-cache && phpcbf --standard=phpcs.xml src tests",
-    "phpstan": "mkdir -p temp/.php-stan-cache && phpstan analyse -c phpstan.neon --memory-limit=1024M",
+    "cs": "mkdir -p temp/.php-codesniffer-cache && phpcs --standard=tools/phpcs.xml src tests",
+    "cs-fix": "mkdir -p temp/.php-codesniffer-cache && phpcbf --standard=tools/phpcs.xml src tests",
+    "phpstan": "mkdir -p temp/.php-stan-cache && phpstan analyse -c tools/phpstan.neon --memory-limit=1024M",
     "tests": "phpunit tests --configuration tests/phpunit.xml"
   },
   "autoload": {
