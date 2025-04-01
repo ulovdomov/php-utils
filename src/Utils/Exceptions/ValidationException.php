@@ -4,7 +4,7 @@ namespace UlovDomov\Exceptions;
 
 use UlovDomov\Http\StatusCode;
 
-final class ValidationException extends \RuntimeException
+class ValidationException extends \RuntimeException
 {
     public static function create(string $message): self
     {
